@@ -79,4 +79,24 @@ export class AppController {
       throw new HttpException('购买数据保存失败', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
+  @Post('deleteImage')
+  async deleteImage(@Body() data:{ipfsUri:string}){
+    try{
+      await this.appService.deleteImage(data);
+      return { message: '删除图片成功'};
+    }catch(error){
+      throw new HttpException('删除图片失败', HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Post('getInfo')
+  async getInfo(@Body() data:{tokenId:number}){
+    try{
+      const pHashValue=await this.appService.getInfo(data);
+      return { message: '获取图片信息成功',pHash:pHashValue};
+    }catch(error){
+      throw new HttpException('获取图片信息失败', HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 }

@@ -37,7 +37,7 @@ const UploadPage = () => {
         setFormData({ ...metadata, [e.target.name]: e.target.value })
     }
 
-    const handleUpload = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         if (!selectedFile) {
             alert("请先选择一个文件。")
@@ -103,7 +103,7 @@ const UploadPage = () => {
 
     return (
         <div className="max-w-lg mx-auto my-10">
-            <form className="flex flex-col space-y-4">
+            <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
                 <h1 className="text-3xl font-bold text-center mb-6">创建艺术品</h1>
                 <input
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -137,11 +137,11 @@ const UploadPage = () => {
                     type="file"
                     onChange={handleFileChange}
                     accept="image/*"
+                    required
                 />
                 <button
                     className="py-3 px-6 bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold rounded-lg shadow-md hover:shadow-lg transition duration-300"
                     type="submit"
-                    onClick={handleUpload}
                 >
                     上传
                 </button>

@@ -3,8 +3,8 @@
 pragma solidity ^0.8.7;
 
 // 2. Imports
-import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import '@openzeppelin/contracts/token/ERC721/IERC721.sol';
+import '@openzeppelin/contracts/utils/ReentrancyGuard.sol';
 // 3. Interfaces, Libraries, Contracts
 error PriceNotMet(address nftAddress, uint256 tokenId, uint256 price);
 error ItemNotForSale(address nftAddress, uint256 tokenId);
@@ -152,8 +152,8 @@ contract NftMarketPlace is ReentrancyGuard {
             revert NoProceeds();
         }
         s_proceeds[msg.sender] = 0;
-        (bool success, ) = payable(msg.sender).call{value: proceeds}("");
-        require(success, "Transfer failed");
+        (bool success, ) = payable(msg.sender).call{value: proceeds}('');
+        require(success, 'Transfer failed');
     }
 
     /////////////////////

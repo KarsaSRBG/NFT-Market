@@ -184,4 +184,27 @@ export class AppService {
       await this.nftRepository.save(nft);
     }
   }
+
+  async deleteImage(data:{ipfsUri:string}): Promise<void>{
+
+    const nft = await this.nftRepository.findOne({
+      where: {
+        IpfsAddress:data.ipfsUri,
+      },
+    });
+
+
+    await this.nftRepository.remove(nft);
+  }
+
+  async getInfo(data:{tokenId:number}): Promise<string>{
+
+    const nft = await this.nftRepository.findOne({
+      where: {
+        TokenId:data.tokenId
+      },
+    });
+
+    return nft.pHash;
+  }
 }
